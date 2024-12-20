@@ -1,0 +1,233 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1046{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Candara;}{\f2\fnil\fcharset1 Cambria Math;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.22621}{\*\mmathPr\mmathFont2\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\f0\fs40\lang22 Samuel Ramalho, terceiro Dev 3, Tarde\fs22\par
+
+\pard\sa200\sl276\slmult1\par
+1) \b Supervisionado: \b0 O sistema aprende a partir de um conjunto j\'e1 pr\'e9-definido pelo criador\b\par
+N\'e3o Supervisionado: \b0 O sistema aprende sozinho buscando por dados\par
+\b Por Refor\'e7o: \b0 O sistema aprende por tentativa e erro, recebendo recompensas quando vai bem, e puni\'e7\'f5es quando vai mal\par
+\par
+2) Overfitting \'e9 quando o sistema aprende demais um tipo especifico de informa\'e7\'e3o, fazendo ele ficar pouco eficaz em outras tarefas\par
+\par
+3) O PLN \'e9 muito importante para permitir que o chatbot consiga se comunicar bem com as pessoas, tanto dando quanto recebendo as informa\'e7\'f5es, um grande desafio \'e9 adaptar o chatbot a todas as regras lingu\'edsticas e poss\'edveis ambiguidades de palavras\par
+\par
+4) Abordagens baseadas em regras seguem padr\'f5es fixos, enquanto as de aprendizado de m\'e1quina aprendem com dados.\par
+\b Vantagens:\b0\par
+Regras: Simples, previs\'edveis, r\'e1pidas de implementar.\par
+Aprendizado de m\'e1quina: Flex\'edveis, adapt\'e1veis, melhoram com o tempo.\par
+\b Desvantagens:\b0\par
+Regras: Limitadas, dif\'edceis de escalar.\par
+Aprendizado de m\'e1quina: Requerem grandes volumes de dados, podem ser imprevis\'edveis.\par
+\par
+5) O sistema deve considerar o tipo de vari\'e1vel de sa\'edda, complexidade do problema e dados.\par
+\b Exemplos:\b0\par
+Classifica\'e7\'e3o: Diagn\'f3stico m\'e9dico (doen\'e7a ou n\'e3o).\par
+Regress\'e3o: Pre\'e7o de im\'f3veis (valor cont\'ednuo).\par
+\par
+\par
+\par
+\par
+
+\pard\sa200\sl276\slmult1\qc\fs96 Pesquisa\f1\par
+\fs22\par
+
+\pard\sa200\sl276\slmult1\b\f0\fs36 Regress\'e3o Linear \fs22\par
+\b0 A regress\'e3o linear \'e9 um modelo de aprendizado supervisionado usado para prever valores cont\'ednuos. Ela estabelece uma rela\'e7\'e3o linear entre a vari\'e1vel dependente  \f2\u-10187?\u-9114?\f0   e uma ou mais vari\'e1veis independentes \f2\u-10187?\u-9115?\f0  O objetivo \'e9 encontrar a linha reta que melhor se ajusta aos dados.\par
+\f1\lang22 Exemplo: Suponha que voc\'ea queira prever o pre\'e7o de uma casa com base na sua \'e1rea em metros quadrados. Usando a regress\'e3o linear, voc\'ea cria um modelo que relaciona a \'e1rea da casa com o pre\'e7o\par
+import numpy as np\par
+import matplotlib.pyplot as plt\par
+from sklearn.linear_model import LinearRegression\par
+\par
+# Dados de exemplo\par
+# \'c1rea em metros quadrados e pre\'e7o da casa (em milhares de d\'f3lares)\par
+area = np.array([[50], [100], [150], [200], [250]])  # Vari\'e1vel independente\par
+preco = np.array([150, 250, 350, 450, 550])  # Vari\'e1vel dependente\par
+\par
+# Cria\'e7\'e3o do modelo\par
+modelo = LinearRegression()\par
+\par
+# Treinamento do modelo\par
+modelo.fit(area, preco)\par
+\par
+# Previs\'e3o\par
+area_nova = np.array([[120]])\par
+preco_previsto = modelo.predict(area_nova)\par
+\par
+# Resultados\par
+print(f"Pre\'e7o previsto para uma casa de 120 m\'b2: \{preco_previsto[0]\} mil d\'f3lares")\par
+\par
+# Gr\'e1fico\par
+plt.scatter(area, preco, color='blue')\par
+plt.plot(area, modelo.predict(area), color='red')\par
+plt.xlabel('\'c1rea (m\'b2)')\par
+plt.ylabel('Pre\'e7o (milhares de d\'f3lares)')\par
+plt.title('Regress\'e3o Linear: Pre\'e7o de Casa vs. \'c1rea')\par
+plt.show()\par
+\par
+\b\fs36 Regress\'e3o Log\'edstica\par
+\b0\fs22 A regress\'e3o log\'edstica \'e9 usada para problemas de classifica\'e7\'e3o bin\'e1ria, ou seja, quando se deseja prever um valor discreto entre duas classes (ex: sim/n\'e3o, 1/0). Embora tenha "regress\'e3o" no nome, \'e9 um modelo de classifica\'e7\'e3o, pois gera uma probabilidade entre 0 e 1 que \'e9 mapeada para uma das classes.\par
+Exemplo: Um modelo de regress\'e3o log\'edstica pode ser usado para prever se um paciente tem ou n\'e3o uma doen\'e7a com base em vari\'e1veis como idade, press\'e3o arterial e hist\'f3rico m\'e9dico. \par
+from sklearn.linear_model import LogisticRegression\par
+import numpy as np\par
+\par
+# Dados de exemplo\par
+# Horas de estudo e aprova\'e7\'e3o (0 = reprovado, 1 = aprovado)\par
+horas = np.array([[1], [2], [3], [4], [5], [6], [7]])\par
+aprovado = np.array([0, 0, 0, 0, 1, 1, 1])\par
+\par
+# Cria\'e7\'e3o do modelo\par
+modelo = LogisticRegression()\par
+\par
+# Treinamento do modelo\par
+modelo.fit(horas, aprovado)\par
+\par
+# Previs\'e3o\par
+hora_estudo = np.array([[3.5]])  # N\'famero de horas de estudo para previs\'e3o\par
+resultado = modelo.predict(hora_estudo)\par
+\par
+# Resultados\par
+print(f"Resultado para 3.5 horas de estudo: \{'Aprovado' if resultado[0] == 1 else 'Reprovado'\}")\par
+\par
+# Visualiza\'e7\'e3o\par
+import matplotlib.pyplot as plt\par
+import numpy as np\par
+\par
+plt.scatter(horas, aprovado, color='blue')\par
+plt.plot(horas, modelo.predict_proba(horas)[:, 1], color='red')\par
+plt.xlabel('Horas de Estudo')\par
+plt.ylabel('Probabilidade de Aprova\'e7\'e3o')\par
+plt.title('Regress\'e3o Log\'edstica: Aprova\'e7\'e3o vs. Horas de Estudo')\par
+plt.show()\par
+\par
+\b\fs36 Clustering\par
+\b0\fs22 O clustering \'e9 uma t\'e9cnica de aprendizado n\'e3o supervisionado que agrupa dados em clusters (ou grupos), de modo que os dados dentro de cada grupo sejam mais semelhantes entre si do que com os dados de outros grupos. N\'e3o \'e9 necess\'e1rio ter r\'f3tulos para os dados de treinamento.\par
+Exemplo: Em um sistema de recomenda\'e7\'e3o de filmes, o algoritmo de clustering pode agrupar os usu\'e1rios com gostos semelhantes. Por exemplo, um grupo pode conter usu\'e1rios que preferem filmes de a\'e7\'e3o, enquanto outro pode conter usu\'e1rios que preferem dramas. Esse agrupamento ajuda a recomendar filmes com base nos grupos aos quais os usu\'e1rios pertencem.\par
+from sklearn.cluster import KMeans\par
+import numpy as np\par
+import matplotlib.pyplot as plt\par
+\par
+# Dados de exemplo\par
+# Quantidade de compras e frequ\'eancia de compras de clientes\par
+dados = np.array([[1, 2], [2, 3], [3, 4], [10, 10], [11, 12], [12, 13]])\par
+\par
+# Cria\'e7\'e3o do modelo de clustering\par
+kmeans = KMeans(n_clusters=2)\par
+\par
+# Treinamento do modelo\par
+kmeans.fit(dados)\par
+\par
+# Previs\'f5es de clusters\par
+clusters = kmeans.predict(dados)\par
+\par
+# Resultados\par
+print(f'Centroides dos clusters: \{kmeans.cluster_centers_\}')\par
+print(f'Previs\'f5es dos clusters: \{clusters\}')\par
+\par
+# Visualiza\'e7\'e3o\par
+plt.scatter(dados[:, 0], dados[:, 1], c=clusters, cmap='viridis')\par
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=300, c='red', marker='X')\par
+plt.xlabel('Quantidade de Compras')\par
+plt.ylabel('Frequ\'eancia de Compras')\par
+plt.title('Clustering K-Means: Agrupamento de Clientes')\par
+plt.show()\par
+\par
+\par
+
+\pard\sa200\sl276\slmult1\qc\f0\fs96 Atividade Pratica\par
+
+\pard\sa200\sl276\slmult1\b\fs36 Clusteriza\'e7\'e3o com K-Means\b0\fs22\par
+Para a tarefa de clusteriza\'e7\'e3o, escolhi o Iris Dataset, um dos datasets mais conhecidos para aprendizado de m\'e1quina. Este dataset cont\'e9m 150 amostras de flores Iris, distribu\'eddas entre tr\'eas esp\'e9cies diferentes: Setosa, Versicolor e Virginica. Cada amostra possui 4 vari\'e1veis: comprimento e largura das s\'e9palas e p\'e9talas.\par
+\b Processo de Defini\'e7\'e3o dos Par\'e2metros:\par
+\b0 Escolha do n\'famero de clusters (k): Para determinar o n\'famero de clusters mais adequado, usei o m\'e9todo do cotovelo (Elbow Method). Esse m\'e9todo me ajudou a identificar que o n\'famero ideal de clusters seria 3, j\'e1 que a soma das dist\'e2ncias quadr\'e1ticas (inertia) come\'e7a a estabilizar quando k atinge 3.\par
+Normaliza\'e7\'e3o dos Dados: Como o algoritmo K-Means \'e9 sens\'edvel \'e0 escala das vari\'e1veis, realizei a normaliza\'e7\'e3o dos dados para que todas as vari\'e1veis tivessem o mesmo peso.\par
+import pandas as pd\par
+import numpy as np\par
+import matplotlib.pyplot as plt\par
+from sklearn.cluster import KMeans\par
+from sklearn.preprocessing import StandardScaler\par
+\par
+# Carregar o dataset Iris\par
+url = '{{\field{\*\fldinst{HYPERLINK https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv }}{\fldrslt{https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv\ul0\cf0}}}}\f0\fs22 '\par
+data = pd.read_csv(url, header=None)\par
+\par
+# Definir as vari\'e1veis independentes (X) e a vari\'e1vel dependente (y)\par
+X = data.iloc[:, :-1].values  # As 4 caracter\'edsticas\par
+y = data.iloc[:, -1].values   # As 3 esp\'e9cies de flores\par
+\par
+# Normaliza\'e7\'e3o dos dados\par
+scaler = StandardScaler()\par
+X_scaled = scaler.fit_transform(X)\par
+\par
+# M\'e9todo do cotovelo para determinar o n\'famero de clusters\par
+inertia = []\par
+for i in range(1, 11):\par
+    kmeans = KMeans(n_clusters=i, random_state=42)\par
+    kmeans.fit(X_scaled)\par
+    inertia.append(kmeans.inertia_)\par
+\par
+# Plotando o gr\'e1fico do cotovelo\par
+plt.plot(range(1, 11), inertia)\par
+plt.title('M\'e9todo do Cotovelo')\par
+plt.xlabel('N\'famero de Clusters')\par
+plt.ylabel('Soma das dist\'e2ncias quadr\'e1ticas (Inertia)')\par
+plt.show()\par
+\par
+# Aplicando K-Means com k = 3 (devido ao m\'e9todo do cotovelo)\par
+kmeans = KMeans(n_clusters=3, random_state=42)\par
+y_kmeans = kmeans.fit_predict(X_scaled)\par
+\par
+# Visualizando os resultados (gr\'e1fico 2D)\par
+plt.scatter(X_scaled[:, 0], X_scaled[:, 1], c=y_kmeans, cmap='viridis')\par
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=300, c='red', marker='X')\par
+plt.title('Clusteriza\'e7\'e3o K-Means')\par
+plt.xlabel('Comprimento da S\'e9pala')\par
+plt.ylabel('Largura da S\'e9pala')\par
+plt.show()\par
+\b Resultados do K-Means: \b0 Ap\'f3s aplicar o K-Means com 3 clusters, consegui observar que os dados foram agrupados de forma significativa, correspondendo aproximadamente \'e0s tr\'eas esp\'e9cies de flores presentes no dataset. Os clusters formados pelo algoritmo coincidiam com as esp\'e9cies Setosa, Versicolor e Virginica.\par
+\par
+\b\fs36 Regress\'e3o Log\'edstica\b0\fs22\par
+Para a tarefa de regress\'e3o log\'edstica, escolhi o mesmo dataset para prever se uma amostra de flor pertence \'e0 esp\'e9cie Setosa (classe 0) ou Versicolor (classe 1), criando assim um problema bin\'e1rio.\par
+\b Etapas do Processo:\b0\par
+Sele\'e7\'e3o de Vari\'e1veis: Utilizei as 4 vari\'e1veis do dataset (comprimento e largura das s\'e9palas e p\'e9talas) para realizar a previs\'e3o da vari\'e1vel alvo bin\'e1ria.\par
+Pr\'e9-processamento: Tamb\'e9m normalizei os dados, pois a regress\'e3o log\'edstica pode ser afetada pela escala das vari\'e1veis.\par
+Treinamento e Avalia\'e7\'e3o: Dividi o dataset em conjuntos de treino e teste (70% para treino e 30% para teste) e treinei o modelo de regress\'e3o log\'edstica. Em seguida, avaliei o desempenho do modelo utilizando m\'e9tricas como precis\'e3o, recall e F1-score.\par
+from sklearn.linear_model import LogisticRegression\par
+from sklearn.model_selection import train_test_split\par
+from sklearn.metrics import classification_report\par
+\par
+# Convertendo a vari\'e1vel alvo para bin\'e1ria (Setosa vs. outras)\par
+y_binary = np.where(y == 'Iris-setosa', 0, 1)\par
+\par
+# Dividindo o dataset em treino e teste\par
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_binary, test_size=0.3, random_state=42)\par
+\par
+# Criando o modelo de regress\'e3o log\'edstica\par
+model = LogisticRegression(random_state=42)\par
+\par
+# Treinando o modelo\par
+model.fit(X_train, y_train)\par
+\par
+# Realizando as previs\'f5es\par
+y_pred = model.predict(X_test)\par
+\par
+# Avalia\'e7\'e3o do modelo\par
+print(classification_report(y_test, y_pred))\par
+\b Resultados da Regress\'e3o Log\'edstica: \b0 O modelo de regress\'e3o log\'edstica foi eficaz na tarefa de prever se uma flor pertence \'e0 classe Setosa ou Versicolor. A acur\'e1cia foi alta, com boas m\'e9tricas de desempenho como precis\'e3o e recall, indicando que o modelo conseguiu distinguir bem as duas classes.\par
+\par
+\b\fs36 Relat\'f3rio Final:\b0\fs22\par
+Descri\'e7\'e3o do Dataset:\par
+Fonte: Kaggle - "Iris Dataset" ({{\field{\*\fldinst{HYPERLINK https://www.kaggle.com/uciml/iris }}{\fldrslt{https://www.kaggle.com/uciml/iris\ul0\cf0}}}}\f0\fs22 )\par
+Amostras: 150 amostras, com 4 vari\'e1veis cada.\par
+Vari\'e1veis Principais: Comprimento e largura das s\'e9palas e p\'e9talas.\par
+Justificativa para o Uso dos Algoritmos:\par
+K-Means: Escolhi o K-Means para realizar a clusteriza\'e7\'e3o porque ele \'e9 um algoritmo de aprendizado n\'e3o supervisionado que pode identificar padr\'f5es e agrupamentos nos dados sem a necessidade de r\'f3tulos. Como o dataset cont\'e9m v\'e1rias esp\'e9cies de flores, o K-Means ajudou a identificar esses grupos de forma eficiente.\par
+Regress\'e3o Log\'edstica: A regress\'e3o log\'edstica foi escolhida para resolver o problema de classifica\'e7\'e3o bin\'e1ria, pois \'e9 uma t\'e9cnica amplamente usada em problemas de previs\'e3o onde a vari\'e1vel alvo \'e9 bin\'e1ria. No meu caso, a tarefa era classificar flores como Setosa ou Versicolor.\par
+\b Principais Resultados Obtidos:\b0\par
+Clusteriza\'e7\'e3o: O K-Means conseguiu agrupar as flores de maneira significativa em 3 clusters que coincidem com as esp\'e9cies do dataset. Isso mostra que o K-Means \'e9 eficiente para encontrar padr\'f5es no conjunto de dados.\par
+Regress\'e3o Log\'edstica: A regress\'e3o log\'edstica apresentou bons resultados na classifica\'e7\'e3o bin\'e1ria, com alta precis\'e3o e recall, o que indica que o modelo conseguiu prever corretamente se uma flor era da classe Setosa ou Versicolor.\par
+\par
+\par
+\par
+}
+ 
